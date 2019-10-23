@@ -1,0 +1,145 @@
+//create new file Tarefas
+package projeto_quests;
+
+import java.sql.DriverManager;
+
+public class Tarefa {
+	
+	public Tarefa(String tema, String area, String atividades, String descricao) {
+		super();
+		this.tema = tema;
+		this.area = area;
+		this.atividades = atividades;
+		this.descricao = descricao;
+	}
+
+
+	private String tema;
+	private String area;
+	private String  atividades;
+	private String  prazo;
+	private String descricao;
+	private String  prioridade;
+	
+	
+	public void CriarTarefa() {	
+	}
+
+
+	public String getTema() {
+		return tema;
+	}
+
+
+	public void setTema(String tema) {
+		this.tema = tema;
+	}
+
+
+	public String getArea() {
+		return area;
+	}
+
+
+	public void setArea(String area) {
+		this.area = area;
+	}
+
+
+	public String getAtividades() {
+		return atividades;
+	}
+
+
+	public void setAtividades(String atividades) {
+		this.atividades = atividades;
+	}
+
+
+	public String getPrazo() {
+		return prazo;
+	}
+
+
+	public void setPrazo(String prazo) {
+		this.prazo = prazo;
+	}
+
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+
+	public String getPrioridade() {
+		return prioridade;
+	}
+
+
+	public void setPrioridade(String prioridade) {
+		this.prioridade = prioridade;
+	}
+	
+
+}
+
+//create new file TarefaBD
+package projeto_quests;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.List;
+
+import javax.management.RuntimeErrorException;
+
+public class TarefaDB{
+	private Connection conn;
+	private String url;
+	
+	public TarefaDB(String userName, String password) {
+		url = "jdbc:mysql://localhost/quests?user="+userName+"&password="+password+"&userTimezone=true&serverTimezone=UTC";
+	}
+	
+	public void create (Tarefa tarefa) {
+		
+	}
+	
+	public List<Tarefa> read (){
+		return null;
+	}
+	
+	public void openConnection() {
+		
+			try {
+				conn = DriverManager.getConnection(url);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println("conectado");
+	}
+	
+	public void closeConnection () throws SQLException {
+		conn.close();
+	}
+		
+}
+
+//mySQL
+create database quests;
+use quests;
+
+create table tarefa(
+	tema varchar(60),
+    area varchar(60),
+    atividades varchar(300),
+    prazo datetime,
+    descrição varchar(600),
+    prioridade int
+);
